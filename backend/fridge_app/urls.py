@@ -1,10 +1,8 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import SimpleRouter
+from fridge_app import views
 
-from . import views
+r = SimpleRouter()
+r.register('food-list', views.FoodViewSet, basename='food')
 
-app_name = 'fridge_app'
-
-urlpatterns = [
-    path('add_food', views.add_food, name='add_food'),
-
-]
+urlpatterns = r.urls

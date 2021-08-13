@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 class FoodPage extends Component {
   render() {
-    state = {
-      foodLists: []
-    }
+    // state = {
+    //   foodLists: []
+    // }
     
     return (
       <div>
