@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
 
-    path('login/', obtain_jwt_token)
+    path('', obtain_jwt_token)
 ]
