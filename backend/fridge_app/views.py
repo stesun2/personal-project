@@ -6,6 +6,9 @@ class FoodViewSet(ModelViewSet):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
 
+    def get_queryset(self):
+        return Food.objects.filter(user=self.request.user)
+
 
 
  

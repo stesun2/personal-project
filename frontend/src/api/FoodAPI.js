@@ -1,5 +1,14 @@
 const BASE_URL = 'http://localhost:8000'
 
+const getTokenInit = (token) => {
+  return {
+      headers: {
+        'Content-Type': 'application/json',
+        "authorization": `JWT ${token}`
+      }
+  }
+}
+
 const tryCatchFetch = async (url, init) => {
   try {
     let request = await fetch(url, init)
@@ -36,24 +45,29 @@ const doLogin = async (credentials) => {
 }
 
 const getFoodListById = async (foodListId, token) => {
-  try {
-    let url = `${BASE_URL}food/food-list/${foodListId}/`
-    let init = {
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': `JWT ${token}`
-      },
-    }
-    console.log('URL:', url)
-    let request = await fetch(url)
-    let data = await request.json()
-    return data
-  }
-  catch(error) {
-    console.error(error)
-    return null
-  }
+  let url = `${BASE_URL}food/food-list/${foodListId}/`
+  return await tryCatchFetch(url, getTokenInit(token))
 }
+
+// const getFoodListById = async (foodListId, token) => {
+//   try {
+//     let url = `${BASE_URL}food/food-list/${foodListId}/`
+//     let init = {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'authorization': `JWT ${token}`
+//       },
+//     }
+//     console.log('URL:', url)
+//     let request = await fetch(url)
+//     let data = await request.json()
+//     return data
+//   }
+//   catch(error) {
+//     console.error(error)
+//     return null
+//   }
+// }
 const myExport = {
   getFoodListById,
   doLogin
