@@ -12,7 +12,6 @@ class HomePage extends Component {
     foodList: []
   }
 
-
   // helper methods
   getFoodList = async () => {
     try {
@@ -43,6 +42,7 @@ class HomePage extends Component {
       this.getFoodList()
 
   }
+
   // render
   renderWelcome () {
     if(!this.context) {
@@ -58,7 +58,6 @@ class HomePage extends Component {
         <Link to={`/food-list/${foodList.id}`}> {foodList.name} </Link> 
         </li>
     })
-
 
     return (
       <div>

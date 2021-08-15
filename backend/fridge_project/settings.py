@@ -142,7 +142,8 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'fridge_app_auth.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'fridge_app_auth.utils.my_jwt_response_handler',
+    # 'JWT_AUTH_HEADER_PREFIX': 'Token',
 }
 
 CORS_ORIGIN_WHITELIST = ['https://localhost:3000','http://localhost:3000']
