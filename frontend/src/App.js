@@ -7,6 +7,7 @@ import FoodPage from './pages/FoodPage.js'
 import SearchPage from './pages/SearchPage.js'
 import LoginPage from './pages/LoginPage.js'
 import UserContext from './contexts/UserContext';
+// import data from './mock-data.json';
 
 // Function method
 // function App() {

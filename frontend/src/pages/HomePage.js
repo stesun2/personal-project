@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import FoodAPI from '../api/FoodAPI'
+import FoodTable from '../components/FoodTable'
 
 // import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css'
+// const mockData = '../mock-data.json'
  
 class HomePage extends Component {
   state = {
@@ -22,13 +24,9 @@ class HomePage extends Component {
         let foodListData = await FoodAPI.getFoodList(token)
         this.setState({ foodList: foodListData })
       }
-
-
     }
     catch {
-
     }
-
   }
 
   // life cycle
@@ -65,6 +63,37 @@ class HomePage extends Component {
         <h2>Your Food List:</h2>
         <ul>
           { foodListElement }
+          <FoodTable />
+          {/* <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Storage Location</th>
+                <th>Sell By Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Example:Eggs</td>
+                <td>Fridge</td>
+                <td>8/18/2021</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Ice cream</td>
+                <td>Freezer</td>
+                <td>9/25/2021</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Cereal</td>
+                <td>Pantry</td>
+                <td>9/14/2021</td>
+              </tr>
+            </tbody>
+          </Table> */}
         </ul>
       </div>
     )
@@ -76,7 +105,6 @@ class HomePage extends Component {
       <div className='center'>
         <h1>My Home Page</h1>
         { this.renderWelcome() }
- 
       </div>
     )
   }
