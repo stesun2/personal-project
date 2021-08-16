@@ -9,6 +9,10 @@ const getTokenInit = (token) => {
   }
 }
 
+const saveFood = () => {
+
+}
+
 const tryCatchFetch = async (url, init) => {
   try {
     let request = await fetch(url, init)
@@ -40,7 +44,9 @@ const getFoodListById = async (foodListId, token) => {
 
 const myExport = {
   getFoodListById,
-  doLogin
+  doLogin,
+  saveFood,
+  
 }
 
 export default myExport

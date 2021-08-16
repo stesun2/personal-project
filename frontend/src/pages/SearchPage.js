@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
+import AddFood from '../components/AddFood';
+
 // import FoodAPI from '../api/FoodAPI'
 // import { useParams } from 'react-router-dom'
 
 class SearchPage extends Component {
-  constructor( props ) {
-    super( props );
+  constructor(props) {
+    super(props);
 
     this.state = {
       query: '',
       results: {},
       loading: false,
-      message: ''
+      message: '',
+      showModal: false,
+      selectFood: null,
     }
     this.cancel = ''
   }
@@ -53,7 +57,7 @@ class SearchPage extends Component {
       this.setState({ query: query, results: {}, message: '' })
     }
     else {
-      this.setState({ query:query, loading: true, message: '' }, () => {
+      this.setState({ query: query, loading: true, message: '' }, () => {
         this.fetchSearchResults(query)
   
       })
@@ -67,21 +71,35 @@ class SearchPage extends Component {
   //   this.setState({text: data.results[0], loading: false})
   // }
 
+  handleFoodClick = (label) => {
+    console.log(label)
+    this.setState({
+      selectFood: label,
+      showModal: true,
+    })
+  }
+
+  handleModalClose = () => {
+    this.setState({
+      selectFood: null,
+      showModal: false,
+    })
+  }
+
   renderSearchResults = () => {
     const { results } = this.state
     if (Object.keys(results).length && results.length) {
       return(
         <div className='results-container'>
-          { results.map( result => {
+          { results.map( (result, id) => {
             return (
-              <a key={result.foodId} href={result.image} className='result-item'>
-                <h6 className='image-username'>{result.username}</h6>
+              <div key={id} className='result-item'>
+                <h2 className='image-label' onClick={ () => this.handleFoodClick(result.food.label)}>{result.food.label}</h2>
                 <div className='image-wrapper'>
-                  <img className='image' src={ result.image } alt={`${result.username} `} />
-
+                  <img className='image' src={ result.food.image } alt={`${result.label} `} />
                 </div>
 
-              </a>
+              </div>
             )
           })}
 
@@ -89,11 +107,22 @@ class SearchPage extends Component {
       )
     }
   }
-
   render() {
     const { query } = this.state
+    console.log(this.state)
     return (
       <div className='container'>
+        { this.state.showModal 
+          && 
+          <Modal.Dialog>
+
+            <Modal.Body>
+              <AddFood handleModalClose={ this.handleModalClose } label={ this.state.selectFood }/>
+            </Modal.Body>
+
+        
+          </Modal.Dialog> }
+
         <h1 className='heading'> Search Food Database Page </h1>
         <label className='search-label' htmlFor='search-input'>
           <input type='text' name='query' value={query} id='search-input' placeholder='Look up food' onChange={this.handleOnInputChange} />
@@ -103,6 +132,7 @@ class SearchPage extends Component {
         </label>
         {/* Results */}
           { this.renderSearchResults() }
+          
       </div>
     )
   }
