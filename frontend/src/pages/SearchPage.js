@@ -17,7 +17,7 @@ class SearchPage extends Component {
     this.cancel = ''
   }
   
-  fetchSearchResults = ( query ) => {
+  fetchSearchResults = (query) => {
     const apiURL = `https://api.edamam.com/api/food-database/v2/parser?app_id=2583ee8d&app_key=c375c3f7ae01763b44c09337fe634b56&ingr=${query}`
     if (this.cancel) {
       this.cancel.cancel();
@@ -47,13 +47,17 @@ class SearchPage extends Component {
       })
   }
 
-  handleOnInputChange = ( event ) => {
+  handleOnInputChange = (event) => {
     const query = event.target.value
-    this.setState({ query:query, loading: true, message: '' }, () => {
-      this.fetchSearchResults( query )
-
-    })
-
+    if (!query) {
+      this.setState({ query: query, results: {}, message: '' })
+    }
+    else {
+      this.setState({ query:query, loading: true, message: '' }, () => {
+        this.fetchSearchResults(query)
+  
+      })
+    }
   };
 
   // async componentDidMount () {
