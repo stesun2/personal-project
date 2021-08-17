@@ -37,7 +37,7 @@ const EditFoodRow = ({
           required="required"
           placeholder="Enter a sell by date"
           name="sellBy"
-          value={editFormData.sell_by_date}
+          value={editFormData.sellBy}
           onChange={handleEditFormChange}
         ></input>
       </td>

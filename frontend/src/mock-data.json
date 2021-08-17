@@ -1,32 +1,39 @@
 [
-  {
-      "id": 2,
-      "name": "Cheese",
-      "storage": "Fridge",
-      "sell_by_date": "2021-08-24"
-  },
-  {
-      "id": 3,
-      "name": "Ham",
-      "storage": "Fridge",
-      "sell_by_date": "2021-08-19"
-  },
-  {
-      "id": 5,
-      "name": "Eggs",
-      "storage": "Fridge",
-      "sell_by_date": "2021-08-20"
-  },
-  {
-      "id": 6,
-      "name": "Milk",
-      "storage": "Fridge",
-      "sell_by_date": "2021-08-18"
-  },
-  {
-      "id": 8,
-      "name": "Bananas",
-      "storage": "Pantry",
-      "sell_by_date": "2021-08-19"
-  }
+    {
+        "id": 2,
+        "name": "Cheese",
+        "storage": "Fridge",
+        "sell_by_date": "2021-08-24"
+    },
+    {
+        "id": 3,
+        "name": "Ham",
+        "storage": "Fridge",
+        "sell_by_date": "2021-08-19"
+    },
+    {
+        "id": 5,
+        "name": "Eggs",
+        "storage": "Fridge",
+        "sell_by_date": "2021-08-20"
+    },
+    {
+        "id": 6,
+        "name": "Milk",
+        "storage": "Fridge",
+        "sell_by_date": "2021-08-18"
+    },
+    {
+        "id": 8,
+        "name": "Bananas",
+        "storage": "Pantry",
+        "sell_by_date": "2021-08-19"
+    },
+    {
+        "id": 9,
+        "name": "Ice Cream",
+        "storage": "Freezer",
+        "sell_by_date": "2021-09-22"
+    }
+ 
 ]

@@ -2,14 +2,15 @@ import React, { useState, Fragment } from 'react'
 import { nanoid } from "nanoid";
 // import axios from 'axios'
 import { Table } from 'react-bootstrap'
-import data from '../mock-data.json'
+// import data from '../mock-data.json'
 import ReadFoodRow from './ReadFoodRow'
 import EditFoodRow from './EditFoodRow'
 
 
-const FoodTable = () => {
+const FoodTable = ({foodList}) => {
+  console.log(foodList)
   // const [food, setFood] = useState({ foodList: [] })
-  const [foods, setFoods] = useState(data)
+  // const [foods, setFoods] = useState(data)
   const [addFormData, setAddFormData] = useState({
     name: '',
     storage: '',
@@ -58,8 +59,8 @@ const FoodTable = () => {
       sellBy: addFormData.sellBy,
     };
 
-    const newFoods = [...foods, newFood];
-    setFoods(newFoods);
+    const newFoods = [...foodList, newFood];
+    // setFoods(newFoods);
   };
 
   const handleEditFormSubmit = (event) => {
@@ -72,13 +73,13 @@ const FoodTable = () => {
       sellBy: addFormData.sellBy,
     };
 
-    const newFoods = [...foods];
+    const newFoods = [...foodList];
 
-    const index = foods.findIndex((food) => food.id === editFoodId);
+    const index = foodList.findIndex((food) => food.id === editFoodId);
 
     newFoods[index] = editedFood;
 
-    setFoods(newFoods);
+    // setFoods(newFoods);
     setEditFoodId(null);
   };
 
@@ -100,13 +101,13 @@ const FoodTable = () => {
   };
 
   const handleDeleteClick = (foodId) => {
-    const newFoods = [...foods];
+    const newFoods = [...foodList];
 
-    const index = foods.findIndex((food) => food.id === foodId);
+    const index = foodList.findIndex((food) => food.id === foodId);
 
     newFoods.splice(index, 1);
 
-    setFoods(newFoods);
+    // setFoods(newFoods);
   };
 
   return (
@@ -123,7 +124,7 @@ const FoodTable = () => {
             </tr>
           </thead>
           <tbody>
-            {foods.map((food) => (
+            {foodList.map((food) => (
                 <Fragment>
                   {editFoodId === food.id ? (
                     <EditFoodRow

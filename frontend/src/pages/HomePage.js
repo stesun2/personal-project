@@ -15,15 +15,15 @@ class HomePage extends Component {
   }
 
   // helper methods
-  getFoodList = async () => {
+  getAllFoodList = async () => {
     try {
-      let token = this.context
-        ? this.context.token
-        : null
-      if (token) {
-        let foodListData = await FoodAPI.getFoodList(token)
-        this.setState({ foodList: foodListData })
-      }
+      console.log(this.context)
+      let response = await FoodAPI.getFoodList(this.context.token)
+      let data = await response.json()
+      console.log(data)
+      this.setState({foodList: data})
+    
+
     }
     catch {
     }
@@ -31,13 +31,15 @@ class HomePage extends Component {
 
   // life cycle
   componentDidMount () {
-    this.getFoodList()
+    this.getAllFoodList()
+    
 
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (prevState.foodList !== this.state.foodList)
-      this.getFoodList()
+    if (this.state.foodList.length == 0) {
+      this.getAllFoodList()
+    }
 
   }
 
@@ -60,40 +62,12 @@ class HomePage extends Component {
     return (
       <div>
         <h2>Welcome to your food managing app {this.context.user.username}</h2>
+        
         <h2>Your Food List:</h2>
         <ul>
           { foodListElement }
-          <FoodTable />
-          {/* <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Storage Location</th>
-                <th>Sell By Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Example:Eggs</td>
-                <td>Fridge</td>
-                <td>8/18/2021</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Ice cream</td>
-                <td>Freezer</td>
-                <td>9/25/2021</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Cereal</td>
-                <td>Pantry</td>
-                <td>9/14/2021</td>
-              </tr>
-            </tbody>
-          </Table> */}
+          <FoodTable foodList={this.state.foodList}/>
+       
         </ul>
       </div>
     )
@@ -104,6 +78,7 @@ class HomePage extends Component {
     return (
       <div className='center'>
         <h1>My Home Page</h1>
+        <Link to='/food-search'>Search Food</Link>
         { this.renderWelcome() }
       </div>
     )

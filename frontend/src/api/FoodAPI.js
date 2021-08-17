@@ -42,10 +42,37 @@ const getFoodListById = async (foodListId, token) => {
   return await tryCatchFetch(url, getTokenInit(token))
 }
 
+const getFoodList = async (token) => {
+  let url = `${BASE_URL}/food/food-list/`
+  return fetch(url, {
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+
+
+}
+
+const addFood = async (token, foodObject) => {
+  let url = `${BASE_URL}/food/food-list/`
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(foodObject)
+  })
+
+} 
+
 const myExport = {
   getFoodListById,
   doLogin,
   saveFood,
+  getFoodList,
+  addFood,
   
 }
 
