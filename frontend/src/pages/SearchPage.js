@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
 import AddFood from '../components/AddFood';
-
+import NewNavBar from '../components/NewNavBar';
 // import FoodAPI from '../api/FoodAPI'
 // import { useParams } from 'react-router-dom'
 
@@ -111,7 +111,7 @@ class SearchPage extends Component {
     const { query } = this.state
     console.log(this.state)
     return (
-      <div className='container'>
+      <div>
         { this.state.showModal 
           && 
           <Modal.Dialog>
@@ -122,11 +122,11 @@ class SearchPage extends Component {
 
         
           </Modal.Dialog> }
-
-        <h1 className='heading'> Search Food Database Page </h1>
+        
+        <NewNavBar />
+        <h1> Search Food Database Page </h1>
         <label className='search-label' htmlFor='search-input'>
           <input type='text' name='query' value={query} id='search-input' placeholder='Look up food' onChange={this.handleOnInputChange} />
-            <br />
             <Button type='submit'>Search</Button>
 
         </label>

@@ -15,7 +15,7 @@ class AddFood extends Component {
       "sell_by_date": event.target.sellBy.value
 
     }
-    let response = await FoodAPI.addFood(this.context.token, foodObj)
+    let response = await FoodAPI.addFood(localStorage.getItem('token'), foodObj)
     let data = await response.json()
     console.log(data)
     this.props.handleModalClose()
@@ -30,9 +30,9 @@ class AddFood extends Component {
           <label for='sellBy'>Sell By:</label>
           <input type='date' id='sellBy' name='sellBy'></input>
             <select name='storage'>          
-              <option value="fridge">Fridge</option>
-              <option value="freezer">Freezer</option>
-              <option value="pantry">Pantry</option>
+              <option value="Fridge">Fridge</option>
+              <option value="Freezer">Freezer</option>
+              <option value="Pantry">Pantry</option>
             </select>
           <Button type='submit'> Save Food </Button>
 

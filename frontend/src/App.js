@@ -7,7 +7,10 @@ import FoodPage from './pages/FoodPage.js'
 import SearchPage from './pages/SearchPage.js'
 import LoginPage from './pages/LoginPage.js'
 import UserContext from './contexts/UserContext';
-// import data from './mock-data.json';
+import NewNavBar from './components/NewNavBar';
+// import Navbar from './components/Navbar'
+// import Menuitems from './components/Navbar'
+
 
 // Function method
 // function App() {
@@ -40,7 +43,8 @@ class App extends Component {
       <div className='App'>
         <UserContext.Provider value={this.state.user}>
           <BrowserRouter>
-            <Switch>
+            <Switch> 
+              {/* <NewNavBar /> */}
               <Route exact path="/" component={HomePage} />
               <Route exact path="/login" render={this.renderLoginPage} />
               <Route exact path="/food-list/:foodListId" component={FoodPage} />

@@ -113,7 +113,6 @@ const FoodTable = ({foodList}) => {
   return (
     <div className='app-container'>
       <form onSubmit={handleEditFormSubmit}>
-        <h2>Table</h2>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -144,8 +143,8 @@ const FoodTable = ({foodList}) => {
           </tbody>
         </Table>
       </form>
-      <h2>Add a Food</h2>
-      <form onSubmit={handleAddFormSubmit}>
+      {/* <h2>Add a Food</h2> */}
+      {/* <form onSubmit={handleAddFormSubmit}>
       <input
           type="text"
           required="required"
@@ -161,9 +160,9 @@ const FoodTable = ({foodList}) => {
           value={editFormData.storage}
           onChange={handleAddFormChange}
         >
-              <option value="fridge">Fridge</option>
-              <option value="freezer">Freezer</option>
-              <option value="pantry">Pantry</option>
+              <option value="Fridge">Fridge</option>
+              <option value="Freezer">Freezer</option>
+              <option value="Pantry">Pantry</option>
         </select>
         <input
           type="date"
@@ -174,7 +173,7 @@ const FoodTable = ({foodList}) => {
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
-      </form>
+      </form> */}
     </div>
   )
 }

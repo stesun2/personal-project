@@ -19,7 +19,8 @@ class LoginPage extends Component {
 
     try {
       let data = await FoodAPI.doLogin(credentials)
-      // console.log(data) 
+      console.log(data) 
+      localStorage.setItem('token', data.token)
       this.props.completeLogin(data)
       this.props.history.push('/')
 

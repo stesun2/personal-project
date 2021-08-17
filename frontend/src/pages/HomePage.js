@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import FoodAPI from '../api/FoodAPI'
 import FoodTable from '../components/FoodTable'
+import NewNavBar from '../components/NewNavBar'
 
 // import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,11 +19,10 @@ class HomePage extends Component {
   getAllFoodList = async () => {
     try {
       console.log(this.context)
-      let response = await FoodAPI.getFoodList(this.context.token)
+      let response = await FoodAPI.getFoodList(localStorage.getItem('token'))
       let data = await response.json()
       console.log(data)
       this.setState({foodList: data})
-    
 
     }
     catch {
@@ -32,11 +32,11 @@ class HomePage extends Component {
   // life cycle
   componentDidMount () {
     this.getAllFoodList()
-    
-
   }
 
   componentDidUpdate (prevProps, prevState) {
+    console.log('Prev',prevState)
+    console.log('State',this.state)
     if (this.state.foodList.length == 0) {
       this.getAllFoodList()
     }
@@ -46,7 +46,16 @@ class HomePage extends Component {
   // render
   renderWelcome () {
     if(!this.context) {
-      return <Link to='/login'><Button>Login</Button></Link>
+      console.log("HERE")
+      // return <Link to='/login'><Button>Login</Button></Link>
+      return (
+        <div>
+          <NewNavBar />
+          <ul>
+            <FoodTable foodList={this.state.foodList}/>       
+          </ul>
+        </div>
+      )
     }
 
     if (!this.state.foodList) {
@@ -61,13 +70,11 @@ class HomePage extends Component {
 
     return (
       <div>
+        <NewNavBar />
         <h2>Welcome to your food managing app {this.context.user.username}</h2>
         
-        <h2>Your Food List:</h2>
         <ul>
-          { foodListElement }
-          <FoodTable foodList={this.state.foodList}/>
-       
+          <FoodTable foodList={this.state.foodList}/>       
         </ul>
       </div>
     )
@@ -76,10 +83,11 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className='center'>
-        <h1>My Home Page</h1>
-        <Link to='/food-search'>Search Food</Link>
-        { this.renderWelcome() }
+      <div>
+        {/* <NewNavBar /> */}
+        {/* <h1>My Home Page</h1> */}
+        {/* <Link to='/food-search'>Search Food</Link> */}
+        { this.state.foodList.length > 0 && this.renderWelcome() }
       </div>
     )
   }
